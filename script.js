@@ -22,7 +22,7 @@ function checkPassword() {
   if (input === PASSWORD) {
     lockScreen.style.display = "none";
     app.style.display = "block";
-    updateDeviceCount();
+   
   } else {
     document.getElementById("error").textContent = "Wrong password!";
   }
