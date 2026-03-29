@@ -1,26 +1,53 @@
+:root {
+  --primary: #134E5E;
+  --secondary: #71B280;
+
+  --bg: #f5f7f6;
+  --text: #111;
+  --card: #ffffff;
+}
+
+.dark {
+  --bg: #0f1f24;
+  --text: #ffffff;
+  --card: #162f36;
+}
+
 body {
-  background: #111;
-  color: white;
+  background: var(--bg);
+  color: var(--text);
   font-family: Arial;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0;
+  transition: 0.3s;
 }
 
 .phone, .lock {
-  border: 2px solid white;
+  border-radius: 18px;
   padding: 20px;
-  width: 260px;
+  width: 270px;
   text-align: center;
-  border-radius: 15px;
-  background: #1a1a1a;
+  background: var(--card);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h2 {
+  color: var(--primary);
+}
+
+h3 {
+  margin: 10px 0;
 }
 
 input {
   width: 90%;
   padding: 10px;
   margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 button {
@@ -28,17 +55,44 @@ button {
   padding: 12px;
   margin: 10px 0;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
 }
 
-.block { background: red; color:white; }
-.allow { background: green; color:white; }
-.bt { background: blue; color:white; }
+button:hover {
+  opacity: 0.9;
+}
 
-.green { color: lime; }
-.red { color: red; }
+.block {
+  background: #ff4d4d;
+  color: white;
+}
+
+.allow {
+  background: var(--secondary);
+  color: white;
+}
+
+.bt {
+  background: var(--primary);
+  color: white;
+}
+
+.green { color: var(--secondary); }
+.red { color: #ff4d4d; }
 
 ul {
   text-align: left;
+  padding-left: 20px;
+}
+
+/* THEME TOGGLE BUTTON */
+.theme-toggle {
+  margin-top: 10px;
+  font-size: 14px;
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
 }
