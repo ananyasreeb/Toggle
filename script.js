@@ -1,62 +1,26 @@
-body {
-  background: #111;
-  color: white;
-  font-family: Arial;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+const blockBtn = document.getElementById("blockBtn");
+const allowBtn = document.getElementById("allowBtn");
 
-.phone {
-  border: 2px solid white;
-  padding: 20px;
-  width: 260px;
-  text-align: center;
-  border-radius: 15px;
-  background: #1a1a1a;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
-}
+const camera = document.getElementById("camera");
+const mic = document.getElementById("mic");
+const mode = document.getElementById("mode");
 
-h3 {
-  margin-bottom: 10px;
-}
+blockBtn.onclick = () => {
+  camera.textContent = "BLOCKED";
+  mic.textContent = "BLOCKED";
 
-button {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.1s, opacity 0.2s;
-}
+  camera.className = "red";
+  mic.className = "red";
 
-button:active {
-  transform: scale(0.95);
-  opacity: 0.8;
-}
+  mode.textContent = "🔴 BLOCK MODE";
+};
 
-.block {
-  background: red;
-  color: white;
-}
+allowBtn.onclick = () => {
+  camera.textContent = "ALLOWED";
+  mic.textContent = "ALLOWED";
 
-.allow {
-  background: green;
-  color: white;
-}
+  camera.className = "green";
+  mic.className = "green";
 
-.status {
-  margin: 15px 0;
-  font-size: 18px;
-}
-
-.green {
-  color: lime;
-}
-
-.red {
-  color: red;
-}
+  mode.textContent = "🟢 ALLOW MODE";
+};
