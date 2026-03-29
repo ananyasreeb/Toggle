@@ -2,33 +2,46 @@
 <html>
 <head>
   <title>Toggle App</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
 
-<!-- LOCK SCREEN -->
+<!-- 🔒 LOCK SCREEN -->
 <div id="lockScreen" class="lock">
   <h2>Enter Password</h2>
+
   <input type="password" id="passwordInput" placeholder="Enter password">
+
   <button onclick="checkPassword()">Unlock</button>
 
-  <p onclick="resetPassword()" style="cursor:pointer; color:lightblue;">
+  <p onclick="resetPassword()" style="cursor:pointer; color: var(--primary);">
     Forgot Password?
   </p>
 
   <p id="error"></p>
 </div>
 
-<!-- MAIN APP -->
+<!-- 📱 MAIN APP -->
 <div id="app" style="display:none;">
   <div class="phone">
+
     <h2>Toggle App</h2>
 
+    <!-- DEVICE COUNT -->
     <p id="deviceCount">📱 Connected Devices: 0</p>
 
+    <!-- MODE -->
     <h3 id="mode">🔴 BLOCK MODE</h3>
 
+    <!-- BUTTONS -->
     <button id="blockBtn" class="block">🔴 BLOCK</button>
 
     <div class="status">
@@ -38,23 +51,37 @@
 
     <button id="allowBtn" class="allow">🟢 ALLOW</button>
 
-    <button onclick="openBluetooth()" class="bt">📶 Bluetooth</button>
+    <!-- BLUETOOTH -->
+    <button onclick="openBluetooth()" class="bt">
+      📶 Bluetooth
+    </button>
+
+    <!-- THEME TOGGLE -->
+    <button onclick="toggleTheme()" class="theme-toggle">
+      🌙 Toggle Theme
+    </button>
+
   </div>
 </div>
 
-<!-- BLUETOOTH SCREEN -->
+<!-- 📶 BLUETOOTH SCREEN -->
 <div id="bluetoothScreen" style="display:none;" class="phone">
+
   <h2>Bluetooth Devices</h2>
 
   <p id="btStatus">Not connected</p>
 
   <button onclick="connectBluetooth()">🔍 Scan Devices</button>
 
+  <!-- DEVICE LIST -->
   <ul id="deviceList"></ul>
 
   <button onclick="goBack()">⬅ Back</button>
+
 </div>
 
+<!-- JS -->
 <script src="script.js"></script>
+
 </body>
 </html>
