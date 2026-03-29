@@ -2,223 +2,84 @@
 <html>
 <head>
   <title>Toggle App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    :root {
-      --primary: #1f5c63;
-      --accent: #6fae8f;
-      --bg: #eef4f3;
-      --card: #ffffff;
-      --text: #1b3a3f;
-      --soft: rgba(31,92,99,0.08);
-      --border: rgba(31,92,99,0.15);
-    }
-
-    body.dark {
-      --bg: #0f262b;
-      --card: #173c42;
-      --text: #dcefed;
-      --soft: rgba(111,174,143,0.15);
-      --border: rgba(111,174,143,0.25);
-    }
-
-    body {
-      margin:0;
-      background: linear-gradient(135deg, var(--bg), #e4efed);
-      color:var(--text);
-      font-family: Arial;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-    }
-
-    .screen { width:100%; display:flex; justify-content:center; }
-    .hidden { display:none; }
-
-    .card, .login-card {
-      background: var(--card);
-      padding:22px;
-      width:300px;
-      border-radius:20px;
-      text-align:center;
-      border:1px solid var(--border);
-      box-shadow:0 12px 30px var(--soft);
-    }
-
-    .login-card {
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
-
-    input {
-      width:100%;
-      padding:14px;
-      margin:12px 0;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,0.6);
-      color: var(--text);
-    }
-
-    button {
-      width:100%;
-      padding:12px;
-      margin:8px 0;
-      border:none;
-      border-radius:12px;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    .block { background: linear-gradient(135deg,#1f5c63,#2d6f77); color:white; }
-    .allow { background: linear-gradient(135deg,#6fae8f,#5c9c7d); color:white; }
-    .bt { background: linear-gradient(135deg,#1f5c63,#6fae8f); color:white; }
-
-    .block-item {
-      padding:16px;
-      margin:10px 0;
-      border-radius:14px;
-      background: rgba(255,255,255,0.4);
-      border:1px solid var(--border);
-      text-align:left;
-      cursor:pointer;
-    }
-
-    .fab {
-      position:fixed;
-      bottom:20px;
-      left:20px;
-      width:54px;
-      height:54px;
-      border-radius:50%;
-      background: linear-gradient(135deg,#1f5c63,#6fae8f);
-      color:white;
-      font-size:20px;
-    }
-
-    .forgot {
-      color: var(--accent);
-      cursor:pointer;
-      font-size:14px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <!-- LOGIN -->
 <div id="lock" class="screen">
   <div class="login-card">
     <h2>Login</h2>
+
     <input id="pass" type="password" placeholder="Enter password">
+
     <button onclick="unlock()">Unlock</button>
-    <p class="forgot" onclick="reset()">Forgot Password?</p>
+
+    <p class="forgot" onclick="forgotPassword()">Forgot Password?</p>
+
     <p id="err"></p>
   </div>
 </div>
 
-<!-- APP -->
+<!-- MAIN APP -->
 <div id="app" class="screen hidden">
   <div class="card">
+
     <h2>Toggle App</h2>
-    <p id="count">Devices: 0</p>
+    <p id="count">📱 Devices: 0</p>
 
-    <h3 id="mode">BLOCK MODE</h3>
+    <h3 id="mode">🔴 BLOCK MODE</h3>
 
-    <button class="block" onclick="block()">BLOCK</button>
+    <button onclick="block()" class="block">BLOCK</button>
 
     <p>Camera: <span id="cam">BLOCKED</span></p>
     <p>Mic: <span id="mic">BLOCKED</span></p>
 
-    <button class="allow" onclick="allow()">ALLOW</button>
-    <button class="bt" onclick="scan()">Scan Device</button>
+    <button onclick="allow()" class="allow">ALLOW</button>
+
+    <button onclick="scan()" class="bt">Scan Device</button>
+
   </div>
 
+  <!-- ⚙️ SETTINGS BUTTON -->
   <button class="fab" onclick="openSettings()">⚙</button>
 </div>
 
 <!-- SETTINGS -->
 <div id="settings" class="screen hidden">
   <div class="card">
+
     <h2>Settings</h2>
 
-    <div class="block-item" onclick="showDevices()">Devices</div>
-    <div class="block-item" onclick="toggleTheme()">Theme</div>
-    <div class="block-item" onclick="showPass()">Change Password</div>
-    <div class="block-item" onclick="logout()">Logout</div>
+    <div class="block-item" onclick="openDevices()">📱 Devices</div>
+    <div class="block-item" onclick="toggleTheme()">🎨 Theme</div>
+    <div class="block-item" onclick="openPassword()">🔐 Change Password</div>
+    <div class="block-item" onclick="logout()">🚪 Logout</div>
 
-    <button onclick="back()">Back</button>
+    <button onclick="back()">⬅ Back</button>
+
   </div>
 </div>
 
-<script>
-let pass = localStorage.getItem("pass") || "1234";
-let devices = JSON.parse(localStorage.getItem("devices")) || [];
+<!-- DEVICES SCREEN -->
+<div id="devicesScreen" class="screen hidden">
+  <div class="card">
+    <h2>Devices</h2>
+    <ul id="deviceList"></ul>
+    <button onclick="backSettings()">⬅ Back</button>
+  </div>
+</div>
 
-function unlock(){
-  let input = document.getElementById("pass").value;
-  if(input === pass){
-    lock.classList.add("hidden");
-    app.classList.remove("hidden");
-    update();
-  } else {
-    err.innerText="Wrong password";
-  }
-}
+<!-- PASSWORD SCREEN -->
+<div id="passScreen" class="screen hidden">
+  <div class="card">
+    <h2>Change Password</h2>
+    <input id="newPass" placeholder="New password">
+    <button onclick="changePassword()">Save</button>
+    <button onclick="backSettings()">⬅ Back</button>
+  </div>
+</div>
 
-function reset(){
-  let p = prompt("New password:");
-  if(p){
-    pass = p;
-    localStorage.setItem("pass", p);
-    alert("Reset done");
-  }
-}
-
-function block(){
-  cam.innerText="BLOCKED";
-  mic.innerText="BLOCKED";
-  mode.innerText="BLOCK MODE";
-}
-
-function allow(){
-  cam.innerText="ALLOWED";
-  mic.innerText="ALLOWED";
-  mode.innerText="ALLOW MODE";
-}
-
-function scan(){
-  let d="Device_"+Math.floor(Math.random()*1000);
-  devices.push(d);
-  localStorage.setItem("devices", JSON.stringify(devices));
-  update();
-}
-
-function update(){
-  count.innerText="Devices: "+devices.length;
-}
-
-function openSettings(){
-  app.classList.add("hidden");
-  settings.classList.remove("hidden");
-}
-
-function back(){
-  settings.classList.add("hidden");
-  app.classList.remove("hidden");
-}
-
-function toggleTheme(){
-  document.body.classList.toggle("dark");
-}
-
-function logout(){
-  location.reload();
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
