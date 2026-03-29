@@ -3,65 +3,65 @@
 <head>
   <title>Toggle App</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
 
-<!-- LOCK SCREEN -->
-<div id="lockScreen" class="lock">
-  <h2>Enter Password</h2>
+<!-- 🔒 LOCK -->
+<div id="lock" class="screen">
+  <h2>Login</h2>
 
-  <input type="password" id="passwordInput" placeholder="Enter password">
+  <input id="pass" type="password" placeholder="Enter password">
+  <button onclick="unlock()">Unlock</button>
 
-  <button id="unlockBtn">Unlock</button>
-
-  <p id="forgot">Forgot Password?</p>
-
-  <p id="error"></p>
+  <p id="err"></p>
 </div>
 
-<!-- MAIN APP -->
-<div id="app" style="display:none;">
-  <div class="phone">
-
+<!-- 📱 MAIN -->
+<div id="app" class="screen hidden">
+  <div class="card">
     <h2>Toggle App</h2>
 
-    <p id="deviceCount">📱 Connected Devices: 0</p>
+    <p id="count">📱 Devices: 0</p>
 
     <h3 id="mode">🔴 BLOCK MODE</h3>
 
-    <button id="blockBtn" class="block">🔴 BLOCK</button>
+    <button onclick="block()" class="block">BLOCK</button>
 
-    <div class="status">
-      <p>Camera: <span id="camera">BLOCKED</span></p>
-      <p>Mic: <span id="mic">BLOCKED</span></p>
-    </div>
+    <p>Camera: <span id="cam">BLOCKED</span></p>
+    <p>Mic: <span id="mic">BLOCKED</span></p>
 
-    <button id="allowBtn" class="allow">🟢 ALLOW</button>
+    <button onclick="allow()" class="allow">ALLOW</button>
 
-    <button id="btBtn" class="bt">📶 Bluetooth</button>
+    <button onclick="scan()" class="bt">Scan Device</button>
 
-    <button id="themeBtn" class="theme-toggle">🌙 Toggle Theme</button>
+    <button onclick="openSettings()">⚙ Settings</button>
+  </div>
+</div>
+
+<!-- ⚙ SETTINGS -->
+<div id="settings" class="screen hidden">
+  <div class="card">
+
+    <h2>Settings</h2>
+
+    <p><b>Profile:</b> User</p>
+
+    <h3>Devices</h3>
+    <ul id="deviceList"></ul>
+
+    <h3>Theme</h3>
+    <button onclick="toggleTheme()">Toggle Dark/Light</button>
+
+    <h3>Change Password</h3>
+    <input id="newPass" placeholder="New password">
+    <button onclick="changePassword()">Save Password</button>
+
+    <button onclick="logout()" class="block">Logout</button>
+    <button onclick="back()">⬅ Back</button>
 
   </div>
 </div>
 
-<!-- BLUETOOTH SCREEN -->
-<div id="bluetoothScreen" style="display:none;" class="phone">
-  <h2>Bluetooth Devices</h2>
-
-  <p id="btStatus">Not connected</p>
-
-  <button id="scanBtn">🔍 Scan Devices</button>
-
-  <ul id="deviceList"></ul>
-
-  <button id="backBtn">⬅ Back</button>
-</div>
-
 <script src="script.js"></script>
-
 </body>
 </html>
