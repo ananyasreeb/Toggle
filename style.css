@@ -1,20 +1,26 @@
 :root {
+  /* CORE COLORS */
   --primary: #134E5E;
   --accent: #71B280;
 
-  /* LIGHT */
-  --bg: #f0f7f6;
+  /* LIGHT MODE (emerald dusk soft) */
+  --bg: #edf7f5;
   --card: #ffffff;
   --text: #134E5E;
+
+  /* derived from your colors only */
   --soft: rgba(19, 78, 94, 0.08);
+  --border: rgba(19, 78, 94, 0.15);
 }
 
-/* DARK MODE */
+/* 🌙 DARK MODE */
 body.dark {
-  --bg: #0f2f36;
-  --card: #134E5E;
+  --bg: #0e2f35;              /* deep dusk */
+  --card: #134E5E;            /* primary base */
   --text: #e8f6f3;
-  --soft: rgba(113, 178, 128, 0.15);
+
+  --soft: rgba(113,178,128,0.12);
+  --border: rgba(113,178,128,0.25);
 }
 
 /* BASE */
@@ -36,44 +42,58 @@ body {
   justify-content: center;
 }
 
-.hidden { display: none; }
+.hidden {
+  display: none;
+}
 
-/* CARDS */
+/* CARD */
 .card, .login-card {
   background: var(--card);
   padding: 22px;
   width: 300px;
-  border-radius: 18px;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px var(--soft);
 }
 
-/* LOGIN */
+/* LOGIN FIX */
 .login-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 /* INPUT */
 input {
+  width: 100%;
   padding: 14px;
-  margin: 10px 0;
+  margin: 12px 0;
   border-radius: 10px;
-  border: 1px solid var(--soft);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
   outline: none;
+  font-size: 15px;
 }
 
-/* BUTTON */
+/* BUTTON BASE */
 button {
+  width: 100%;
   padding: 12px;
   margin: 8px 0;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
+  transition: 0.2s;
 }
 
-/* BUTTON COLORS (ONLY YOUR PALETTE) */
+button:hover {
+  transform: scale(1.02);
+}
+
+/* ACTION BUTTONS (ONLY YOUR COLORS) */
 .block {
   background: var(--primary);
   color: white;
@@ -91,35 +111,36 @@ button {
 
 /* SETTINGS BLOCKS */
 .block-item {
-  padding: 15px;
+  padding: 16px;
   margin: 10px 0;
   border-radius: 12px;
   background: var(--soft);
+  border: 1px solid var(--border);
   cursor: pointer;
   text-align: left;
 }
 
 .block-item:hover {
-  background: rgba(19, 78, 94, 0.15);
+  background: rgba(19, 78, 94, 0.12);
 }
 
-/* DANGER */
+/* DANGER (still in theme) */
 .danger {
-  color: #134E5E;
   opacity: 0.7;
 }
 
-/* FLOAT BUTTON */
+/* FLOAT SETTINGS BUTTON */
 .fab {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   background: linear-gradient(135deg, #134E5E, #71B280);
   color: white;
   font-size: 20px;
+  box-shadow: 0 8px 20px var(--soft);
 }
 
 /* FORGOT PASSWORD */
