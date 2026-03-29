@@ -8,9 +8,9 @@ const settings = document.getElementById("settings");
 const devicesScreen = document.getElementById("devicesScreen");
 const passScreen = document.getElementById("passScreen");
 
-// login
+// LOGIN
 function unlock() {
-  const input = document.getElementById("pass").value;
+  let input = document.getElementById("pass").value;
 
   if (input === password) {
     lock.classList.add("hidden");
@@ -21,7 +21,17 @@ function unlock() {
   }
 }
 
-// toggle
+// FORGOT PASSWORD
+function forgotPassword() {
+  let newPass = prompt("Enter new password:");
+  if (newPass) {
+    password = newPass;
+    localStorage.setItem("pass", newPass);
+    alert("Password reset successful");
+  }
+}
+
+// TOGGLE
 function block() {
   document.getElementById("cam").innerText = "BLOCKED";
   document.getElementById("mic").innerText = "BLOCKED";
@@ -34,7 +44,7 @@ function allow() {
   document.getElementById("mode").innerText = "🟢 ALLOW MODE";
 }
 
-// devices
+// DEVICES
 function scan() {
   let name = "Device_" + Math.floor(Math.random()*1000);
   devices.push(name);
@@ -62,7 +72,7 @@ function update() {
   });
 }
 
-// navigation
+// NAVIGATION
 function openSettings(){
   app.classList.add("hidden");
   settings.classList.remove("hidden");
@@ -79,25 +89,25 @@ function openDevices(){
   update();
 }
 
-function showChangePass(){
+function openPassword(){
   settings.classList.add("hidden");
   passScreen.classList.remove("hidden");
 }
 
-function backToSettings(){
+function backSettings(){
   devicesScreen.classList.add("hidden");
   passScreen.classList.add("hidden");
   settings.classList.remove("hidden");
 }
 
-// theme
+// THEME
 function toggleTheme(){
   document.body.classList.toggle("dark");
 }
 
-// password
+// PASSWORD CHANGE
 function changePassword(){
-  const newPass = document.getElementById("newPass").value;
+  let newPass = document.getElementById("newPass").value;
   if(newPass){
     password = newPass;
     localStorage.setItem("pass", newPass);
@@ -105,7 +115,7 @@ function changePassword(){
   }
 }
 
-// logout
+// LOGOUT
 function logout(){
   location.reload();
 }
