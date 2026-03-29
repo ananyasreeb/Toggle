@@ -84,3 +84,4 @@ function resetPassword() {
 function updateDeviceCount() {
   deviceCount.textContent = "📱 Connected Devices: " + devices.length;
 }
+updateDeviceCount();
