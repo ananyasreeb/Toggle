@@ -12,6 +12,11 @@
   <h2>Enter Password</h2>
   <input type="password" id="passwordInput" placeholder="Enter password">
   <button onclick="checkPassword()">Unlock</button>
+
+  <p onclick="resetPassword()" style="cursor:pointer; color:lightblue;">
+    Forgot Password?
+  </p>
+
   <p id="error"></p>
 </div>
 
@@ -19,7 +24,9 @@
 <div id="app" style="display:none;">
   <div class="phone">
     <h2>Toggle App</h2>
-<p id="deviceCount">📱 Connected Devices: 0</p>
+
+    <p id="deviceCount">📱 Connected Devices: 0</p>
+
     <h3 id="mode">🔴 BLOCK MODE</h3>
 
     <button id="blockBtn" class="block">🔴 BLOCK</button>
@@ -38,15 +45,16 @@
 <!-- BLUETOOTH SCREEN -->
 <div id="bluetoothScreen" style="display:none;" class="phone">
   <h2>Bluetooth Devices</h2>
+
   <p id="btStatus">Not connected</p>
+
   <button onclick="connectBluetooth()">🔍 Scan Devices</button>
+
+  <ul id="deviceList"></ul>
+
   <button onclick="goBack()">⬅ Back</button>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-<p onclick="resetPassword()" style="cursor:pointer; color:lightblue;">
-  Forgot Password?
-</p>
-<ul id="deviceList"></ul>
