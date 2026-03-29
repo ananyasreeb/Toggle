@@ -10,20 +10,15 @@
   --border: rgba(19,78,94,0.15);
 }
 
-/* DARK */
 body.dark {
   --bg: #0a2a2f;
   --card: #113c42;
   --text: #e7f5f3;
-
-  --soft: rgba(113,178,128,0.15);
-  --border: rgba(113,178,128,0.25);
 }
 
-/* BASE */
 body {
   margin:0;
-  background: linear-gradient(135deg, #eef6f5, #dfeeed);
+  background:var(--bg);
   color:var(--text);
   font-family:Arial;
   display:flex;
@@ -32,7 +27,6 @@ body {
   height:100vh;
 }
 
-/* SCREEN */
 .screen {
   width:100%;
   display:flex;
@@ -41,36 +35,28 @@ body {
 
 .hidden { display:none; }
 
-/* CARD (NOW DUSK STYLE) */
-.card {
+.card, .login-card {
   background:var(--card);
   padding:20px;
   width:300px;
   border-radius:20px;
-
   border:1px solid var(--border);
-  box-shadow:0 10px 25px var(--soft);
 }
 
-/* LOGIN */
 .login-card {
   display:flex;
   flex-direction:column;
-  width:300px;
   align-items:center;
 }
 
-/* INPUT FIX */
 input {
   width:100%;
-  padding:14px;
-  margin:12px 0;
+  padding:12px;
+  margin:10px 0;
   border-radius:10px;
   border:1px solid var(--border);
-  outline:none;
 }
 
-/* BUTTON */
 button {
   width:100%;
   padding:12px;
@@ -80,23 +66,10 @@ button {
   cursor:pointer;
 }
 
-/* 🔥 FIXED COLORS */
-.block {
-  background:var(--primary);
-  color:white;
-}
+.block { background:var(--primary); color:white; }
+.allow { background:var(--accent); color:white; }
+.bt { background:linear-gradient(135deg,#134E5E,#71B280); color:white; }
 
-.allow {
-  background:var(--accent);
-  color:white;
-}
-
-.bt {
-  background:linear-gradient(135deg,#134E5E,#71B280);
-  color:white;
-}
-
-/* 🔥 NEW SETTINGS BLOCK STYLE */
 .block-item {
   padding:15px;
   margin:10px 0;
@@ -104,19 +77,8 @@ button {
   background:var(--soft);
   border:1px solid var(--border);
   cursor:pointer;
-  text-align:left;
 }
 
-.block-item:hover {
-  background:rgba(19,78,94,0.12);
-}
-
-/* REMOVE RED */
-.danger {
-  opacity:0.7;
-}
-
-/* FLOAT BUTTON */
 .fab {
   position:fixed;
   bottom:20px;
@@ -127,6 +89,9 @@ button {
   background:linear-gradient(135deg,#134E5E,#71B280);
   color:white;
   font-size:20px;
+}
 
-  box-shadow:0 8px 20px var(--soft);
+.forgot {
+  color:var(--accent);
+  cursor:pointer;
 }
