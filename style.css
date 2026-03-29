@@ -129,3 +129,9 @@ body {
   flex-direction: column; /* 👈 THIS FIXES EVERYTHING */
   align-items: center;
 }
+.login-card input {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  margin: 10px 0;
+}
