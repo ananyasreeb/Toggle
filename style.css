@@ -154,3 +154,6 @@ button:hover {
   cursor:pointer;
   font-size:14px;
 }
+body {
+  background: red !important;
+}
