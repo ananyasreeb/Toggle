@@ -2,83 +2,129 @@
   --primary: #134E5E;
   --accent: #71B280;
 
-  --bg: #eef6f5;
+  /* LIGHT */
+  --bg: #f0f7f6;
   --card: #ffffff;
-  --text: #123033;
+  --text: #134E5E;
+  --soft: rgba(19, 78, 94, 0.08);
 }
 
+/* DARK MODE */
 body.dark {
-  --bg: #0a2a2f;
-  --card: #113c42;
-  --text: #e7f5f3;
+  --bg: #0f2f36;
+  --card: #134E5E;
+  --text: #e8f6f3;
+  --soft: rgba(113, 178, 128, 0.15);
 }
 
+/* BASE */
 body {
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.screen { width:100%; display:flex; justify-content:center; }
-.hidden { display:none; }
-
-.card {
-  background:var(--card);
-  padding:20px;
-  width:300px;
-  border-radius:20px;
+/* SCREEN */
+.screen {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
+.hidden { display: none; }
+
+/* CARDS */
+.card, .login-card {
+  background: var(--card);
+  padding: 22px;
+  width: 300px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* LOGIN */
 .login-card {
-  display:flex;
-  flex-direction:column;
-  width:300px;
+  display: flex;
+  flex-direction: column;
 }
 
+/* INPUT */
 input {
-  padding:12px;
-  margin:10px 0;
-  border-radius:10px;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid var(--soft);
+  outline: none;
 }
 
+/* BUTTON */
 button {
-  padding:12px;
-  margin:8px 0;
-  border:none;
-  border-radius:10px;
+  padding: 12px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.block { background:#e74c3c; color:white; }
-.allow { background:var(--accent); color:white; }
-.bt { background:var(--primary); color:white; }
-
-/* SETTINGS OPTIONS */
-.option {
-  padding:15px;
-  border-bottom:1px solid #ccc;
-  cursor:pointer;
+/* BUTTON COLORS (ONLY YOUR PALETTE) */
+.block {
+  background: var(--primary);
+  color: white;
 }
 
-.option:hover {
-  background:rgba(0,0,0,0.05);
+.allow {
+  background: var(--accent);
+  color: white;
 }
 
-.danger { color:red; }
+.bt {
+  background: linear-gradient(135deg, #134E5E, #71B280);
+  color: white;
+}
+
+/* SETTINGS BLOCKS */
+.block-item {
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 12px;
+  background: var(--soft);
+  cursor: pointer;
+  text-align: left;
+}
+
+.block-item:hover {
+  background: rgba(19, 78, 94, 0.15);
+}
+
+/* DANGER */
+.danger {
+  color: #134E5E;
+  opacity: 0.7;
+}
 
 /* FLOAT BUTTON */
 .fab {
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  background:var(--primary);
-  color:white;
-  font-size:20px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #134E5E, #71B280);
+  color: white;
+  font-size: 20px;
+}
+
+/* FORGOT PASSWORD */
+.forgot {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 14px;
 }
