@@ -1,26 +1,68 @@
-const blockBtn = document.getElementById("blockBtn");
-const allowBtn = document.getElementById("allowBtn");
+const PASSWORD = "1234"; // change this
+
+const lockScreen = document.getElementById("lockScreen");
+const app = document.getElementById("app");
+const bluetoothScreen = document.getElementById("bluetoothScreen");
 
 const camera = document.getElementById("camera");
 const mic = document.getElementById("mic");
 const mode = document.getElementById("mode");
 
-blockBtn.onclick = () => {
+const clickSound = new Audio("https://www.soundjay.com/buttons/button-3.mp3");
+
+// PASSWORD
+function checkPassword() {
+  const input = document.getElementById("passwordInput").value;
+  if (input === PASSWORD) {
+    lockScreen.style.display = "none";
+    app.style.display = "block";
+  } else {
+    document.getElementById("error").textContent = "Wrong password!";
+  }
+}
+
+// SOUND + TOGGLE
+document.getElementById("blockBtn").onclick = () => {
+  clickSound.play();
+
   camera.textContent = "BLOCKED";
   mic.textContent = "BLOCKED";
-
   camera.className = "red";
   mic.className = "red";
-
   mode.textContent = "🔴 BLOCK MODE";
 };
 
-allowBtn.onclick = () => {
+document.getElementById("allowBtn").onclick = () => {
+  clickSound.play();
+
   camera.textContent = "ALLOWED";
   mic.textContent = "ALLOWED";
-
   camera.className = "green";
   mic.className = "green";
-
   mode.textContent = "🟢 ALLOW MODE";
 };
+
+// BLUETOOTH SCREEN
+function openBluetooth() {
+  app.style.display = "none";
+  bluetoothScreen.style.display = "block";
+}
+
+function goBack() {
+  bluetoothScreen.style.display = "none";
+  app.style.display = "block";
+}
+
+// FAKE BLUETOOTH SCAN (REAL needs Android app)
+function connectBluetooth() {
+  document.getElementById("btStatus").textContent = "Searching...";
+  
+  setTimeout(() => {
+    document.getElementById("btStatus").textContent = "Connected to Device ✅";
+  }, 2000);
+}
+
+// PWA INSTALL
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
