@@ -81,3 +81,6 @@ function resetPassword() {
     alert("Wrong OTP");
   }
 }
+function updateDeviceCount() {
+  deviceCount.textContent = "📱 Connected Devices: " + devices.length;
+}
