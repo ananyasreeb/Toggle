@@ -58,6 +58,20 @@ function goBack() {
 // FAKE BLUETOOTH SCAN (REAL needs Android app)
 function connectBluetooth() {
   document.getElementById("btStatus").textContent = "Searching...";
+
+  setTimeout(() => {
+    const newDevice = "Device_" + Math.floor(Math.random() * 1000);
+
+    devices.push(newDevice);
+    localStorage.setItem("devices", JSON.stringify(devices));
+
+    document.getElementById("btStatus").textContent =
+      "Connected to " + newDevice + " ✅";
+
+    updateDeviceCount();
+  }, 2000);
+} {
+  document.getElementById("btStatus").textContent = "Searching...";
   
   setTimeout(() => {
     document.getElementById("btStatus").textContent = "Connected to Device ✅";
