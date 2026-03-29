@@ -1,35 +1,42 @@
 let devices = JSON.parse(localStorage.getItem("devices")) || [];
 let PASSWORD = localStorage.getItem("appPassword") || "1234";
 
-let devices = JSON.parse(localStorage.getItem("devices")) || [];
-let PASSWORD = localStorage.getItem("appPassword") || "1234";
-
-let deviceCount; // ❗ don't assign yet
 const lockScreen = document.getElementById("lockScreen");
 const app = document.getElementById("app");
 const bluetoothScreen = document.getElementById("bluetoothScreen");
 
+const unlockBtn = document.getElementById("unlockBtn");
+const forgot = document.getElementById("forgot");
+
+const blockBtn = document.getElementById("blockBtn");
+const allowBtn = document.getElementById("allowBtn");
+const btBtn = document.getElementById("btBtn");
+const scanBtn = document.getElementById("scanBtn");
+const backBtn = document.getElementById("backBtn");
+const themeBtn = document.getElementById("themeBtn");
+
 const camera = document.getElementById("camera");
 const mic = document.getElementById("mic");
 const mode = document.getElementById("mode");
+const deviceCount = document.getElementById("deviceCount");
 
 const clickSound = new Audio("https://www.soundjay.com/buttons/button-3.mp3");
 
-// PASSWORD
-function checkPassword() {
+// 🔒 UNLOCK
+unlockBtn.onclick = () => {
   const input = document.getElementById("passwordInput").value;
 
   if (input === PASSWORD) {
     lockScreen.style.display = "none";
     app.style.display = "block";
-   
+    updateDeviceCount();
   } else {
     document.getElementById("error").textContent = "Wrong password!";
   }
-}
+};
 
-// RESET PASSWORD (OTP)
-function resetPassword() {
+// 🔁 RESET PASSWORD
+forgot.onclick = () => {
   const otp = Math.floor(1000 + Math.random() * 9000);
   alert("Your OTP: " + otp);
 
@@ -43,47 +50,39 @@ function resetPassword() {
   } else {
     alert("Wrong OTP");
   }
-}
+};
 
-// TOGGLE
-document.getElementById("blockBtn").onclick = () => {
+// 🔴 BLOCK
+blockBtn.onclick = () => {
   clickSound.play();
 
   camera.textContent = "BLOCKED";
   mic.textContent = "BLOCKED";
-
   camera.className = "red";
   mic.className = "red";
-
   mode.textContent = "🔴 BLOCK MODE";
 };
 
-document.getElementById("allowBtn").onclick = () => {
+// 🟢 ALLOW
+allowBtn.onclick = () => {
   clickSound.play();
 
   camera.textContent = "ALLOWED";
   mic.textContent = "ALLOWED";
-
   camera.className = "green";
   mic.className = "green";
-
   mode.textContent = "🟢 ALLOW MODE";
 };
 
-// BLUETOOTH NAV
-function openBluetooth() {
+// 📶 OPEN BLUETOOTH
+btBtn.onclick = () => {
   app.style.display = "none";
   bluetoothScreen.style.display = "block";
   updateDeviceList();
-}
+};
 
-function goBack() {
-  bluetoothScreen.style.display = "none";
-  app.style.display = "block";
-}
-
-// CONNECT DEVICE
-function connectBluetooth() {
+// 🔍 SCAN DEVICE
+scanBtn.onclick = () => {
   document.getElementById("btStatus").textContent = "Searching...";
 
   setTimeout(() => {
@@ -96,16 +95,22 @@ function connectBluetooth() {
       "Connected to " + newDevice + " ✅";
 
     updateDeviceCount();
-    updateDeviceList(); // ✅ FIXED (you missed this earlier)
+    updateDeviceList();
   }, 2000);
-}
+};
 
-// DEVICE COUNT
+// ⬅ BACK
+backBtn.onclick = () => {
+  bluetoothScreen.style.display = "none";
+  app.style.display = "block";
+};
+
+// 📱 DEVICE COUNT
 function updateDeviceCount() {
   deviceCount.textContent = "📱 Connected Devices: " + devices.length;
 }
 
-// DEVICE LIST
+// 📃 DEVICE LIST
 function updateDeviceList() {
   const list = document.getElementById("deviceList");
   list.innerHTML = "";
@@ -117,11 +122,8 @@ function updateDeviceList() {
   });
 }
 
-// PWA
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
-}
-function toggleTheme() {
+// 🌙 THEME
+themeBtn.onclick = () => {
   document.body.classList.toggle("dark");
 
   if (document.body.classList.contains("dark")) {
@@ -129,16 +131,14 @@ function toggleTheme() {
   } else {
     localStorage.setItem("theme", "light");
   }
-}
+};
 
-/* LOAD SAVED THEME */
+// LOAD THEME
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
 }
-}
-function checkPassword() {
-  alert("Button clicked"); // 👈 test
 
-  const input = document.getElementById("passwordInput").value;
-  ...
+// PWA
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
 }
