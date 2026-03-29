@@ -3,37 +3,37 @@
 <head>
   <title>Toggle App</title>
   <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
 
-<!-- 🔒 LOCK -->
+<!-- 🔒 LOGIN -->
 <div id="lock" class="screen">
   <div class="login-card">
 
-    <h1 class="logo">🔐</h1>
+    <h1>🔐</h1>
     <h2>Welcome Back</h2>
-    <p class="subtitle">Enter your password to continue</p>
+    <p class="sub">Enter your password</p>
 
     <input id="pass" type="password" placeholder="Enter password">
 
     <button onclick="unlock()" class="login-btn">Unlock</button>
 
-    <p id="err" class="error"></p>
+    <p id="err"></p>
 
   </div>
 </div>
-  <h2>Login</h2>
 
-  <input id="pass" type="password" placeholder="Enter password">
-  <button onclick="unlock()">Unlock</button>
-
-  <p id="err"></p>
-</div>
-
-<!-- 📱 MAIN -->
+<!-- 📱 MAIN APP -->
 <div id="app" class="screen hidden">
   <div class="card">
-    <h2>Toggle App</h2>
+
+    <!-- ⚙ TOP BAR -->
+    <div class="topbar">
+      <h2>Toggle App</h2>
+      <button onclick="openSettings()">⚙</button>
+    </div>
 
     <p id="count">📱 Devices: 0</p>
 
@@ -48,9 +48,6 @@
 
     <button onclick="scan()" class="bt">Scan Device</button>
 
-   <button onclick="openSettings()" style="background:#134E5E; color:white; font-weight:bold;">
-  ⚙ Open Settings
-</button>
   </div>
 </div>
 
@@ -70,7 +67,7 @@
 
     <h3>Change Password</h3>
     <input id="newPass" placeholder="New password">
-    <button onclick="changePassword()">Save Password</button>
+    <button onclick="changePassword()">Save</button>
 
     <button onclick="logout()" class="block">Logout</button>
     <button onclick="back()">⬅ Back</button>
@@ -79,5 +76,6 @@
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
