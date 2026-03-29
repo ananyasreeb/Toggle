@@ -119,3 +119,6 @@ function updateDeviceList() {
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+}
