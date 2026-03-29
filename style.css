@@ -32,9 +32,13 @@ button {
   cursor: pointer;
 }
 
-.block { background: red; }
-.allow { background: green; }
+.block { background: red; color:white; }
+.allow { background: green; color:white; }
 .bt { background: blue; color:white; }
 
 .green { color: lime; }
 .red { color: red; }
+
+ul {
+  text-align: left;
+}
