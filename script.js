@@ -67,9 +67,15 @@ if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
 function resetPassword() {
-  const newPass = prompt("Enter new password:");
-  if (newPass) {
+  const otp = Math.floor(1000 + Math.random() * 9000);
+  alert("Your OTP: " + otp);
+
+  const userOtp = prompt("Enter OTP:");
+  
+  if (userOtp == otp) {
+    const newPass = prompt("New password:");
     localStorage.setItem("appPassword", newPass);
-    alert("Password changed!");
+  } else {
+    alert("Wrong OTP");
   }
 }
