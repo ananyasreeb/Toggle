@@ -1,12 +1,14 @@
 let password = localStorage.getItem("pass") || "1234";
 let devices = JSON.parse(localStorage.getItem("devices")) || [];
 
-// SCREENS
+// screens
 const lock = document.getElementById("lock");
 const app = document.getElementById("app");
 const settings = document.getElementById("settings");
+const devicesScreen = document.getElementById("devicesScreen");
+const passScreen = document.getElementById("passScreen");
 
-// LOGIN
+// login
 function unlock() {
   const input = document.getElementById("pass").value;
 
@@ -19,14 +21,7 @@ function unlock() {
   }
 }
 
-// LOGOUT
-function logout() {
-  app.classList.add("hidden");
-  settings.classList.add("hidden");
-  lock.classList.remove("hidden");
-}
-
-// TOGGLE
+// toggle
 function block() {
   document.getElementById("cam").innerText = "BLOCKED";
   document.getElementById("mic").innerText = "BLOCKED";
@@ -39,59 +34,78 @@ function allow() {
   document.getElementById("mode").innerText = "🟢 ALLOW MODE";
 }
 
-// DEVICES
+// devices
 function scan() {
   let name = "Device_" + Math.floor(Math.random()*1000);
   devices.push(name);
-  saveDevices();
-  update();
-}
-
-function removeDevice(index) {
-  devices.splice(index, 1);
-  saveDevices();
-  update();
-}
-
-function saveDevices() {
   localStorage.setItem("devices", JSON.stringify(devices));
+  update();
+}
+
+function removeDevice(i) {
+  devices.splice(i,1);
+  localStorage.setItem("devices", JSON.stringify(devices));
+  update();
 }
 
 function update() {
   document.getElementById("count").innerText = "📱 Devices: " + devices.length;
 
   let list = document.getElementById("deviceList");
-  list.innerHTML = "";
+  if (!list) return;
 
-  devices.forEach((d, i) => {
+  list.innerHTML = "";
+  devices.forEach((d,i)=>{
     let li = document.createElement("li");
     li.innerHTML = d + ` <button onclick="removeDevice(${i})">❌</button>`;
     list.appendChild(li);
   });
 }
 
-// SETTINGS
-function openSettings() {
+// navigation
+function openSettings(){
   app.classList.add("hidden");
   settings.classList.remove("hidden");
 }
 
-function back() {
+function back(){
   settings.classList.add("hidden");
   app.classList.remove("hidden");
 }
 
-// THEME
-function toggleTheme() {
+function openDevices(){
+  settings.classList.add("hidden");
+  devicesScreen.classList.remove("hidden");
+  update();
+}
+
+function showChangePass(){
+  settings.classList.add("hidden");
+  passScreen.classList.remove("hidden");
+}
+
+function backToSettings(){
+  devicesScreen.classList.add("hidden");
+  passScreen.classList.add("hidden");
+  settings.classList.remove("hidden");
+}
+
+// theme
+function toggleTheme(){
   document.body.classList.toggle("dark");
 }
 
-// PASSWORD CHANGE
-function changePassword() {
+// password
+function changePassword(){
   const newPass = document.getElementById("newPass").value;
-  if (newPass) {
+  if(newPass){
     password = newPass;
     localStorage.setItem("pass", newPass);
-    alert("Password changed!");
+    alert("Password updated!");
   }
+}
+
+// logout
+function logout(){
+  location.reload();
 }
