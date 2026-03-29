@@ -1,81 +1,84 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Toggle App</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+:root {
+  --primary: #134E5E;
+  --accent: #71B280;
 
-<!-- 🔒 LOGIN -->
-<div id="lock" class="screen">
-  <div class="login-card">
-    <h2>Login</h2>
-    <input id="pass" type="password" placeholder="Enter password">
-    <button onclick="unlock()">Unlock</button>
-    <p id="err"></p>
-  </div>
-</div>
+  --bg: #eef6f5;
+  --card: #ffffff;
+  --text: #123033;
+}
 
-<!-- 📱 MAIN -->
-<div id="app" class="screen hidden">
-  <div class="card">
+body.dark {
+  --bg: #0a2a2f;
+  --card: #113c42;
+  --text: #e7f5f3;
+}
 
-    <h2>Toggle App</h2>
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
 
-    <p id="count">📱 Devices: 0</p>
+.screen { width:100%; display:flex; justify-content:center; }
+.hidden { display:none; }
 
-    <h3 id="mode">🔴 BLOCK MODE</h3>
+.card {
+  background:var(--card);
+  padding:20px;
+  width:300px;
+  border-radius:20px;
+}
 
-    <button onclick="block()" class="block">BLOCK</button>
+.login-card {
+  display:flex;
+  flex-direction:column;
+  width:300px;
+}
 
-    <p>Camera: <span id="cam">BLOCKED</span></p>
-    <p>Mic: <span id="mic">BLOCKED</span></p>
+input {
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+}
 
-    <button onclick="allow()" class="allow">ALLOW</button>
-    <button onclick="scan()" class="bt">Scan Device</button>
+button {
+  padding:12px;
+  margin:8px 0;
+  border:none;
+  border-radius:10px;
+}
 
-  </div>
+.block { background:#e74c3c; color:white; }
+.allow { background:var(--accent); color:white; }
+.bt { background:var(--primary); color:white; }
 
-  <!-- ⚙️ FLOAT BUTTON -->
-  <button class="fab" onclick="openSettings()">⚙</button>
-</div>
+/* SETTINGS OPTIONS */
+.option {
+  padding:15px;
+  border-bottom:1px solid #ccc;
+  cursor:pointer;
+}
 
-<!-- ⚙ SETTINGS MENU -->
-<div id="settings" class="screen hidden">
-  <div class="card">
+.option:hover {
+  background:rgba(0,0,0,0.05);
+}
 
-    <h2>Settings</h2>
+.danger { color:red; }
 
-    <div class="option" onclick="openDevices()">📱 Devices</div>
-    <div class="option" onclick="toggleTheme()">🎨 Theme</div>
-    <div class="option" onclick="showChangePass()">🔐 Change Password</div>
-    <div class="option danger" onclick="logout()">🚪 Logout</div>
-
-    <button onclick="back()">⬅ Back</button>
-
-  </div>
-</div>
-
-<!-- 📱 DEVICES SCREEN -->
-<div id="devicesScreen" class="screen hidden">
-  <div class="card">
-    <h2>Devices</h2>
-    <ul id="deviceList"></ul>
-    <button onclick="backToSettings()">⬅ Back</button>
-  </div>
-</div>
-
-<!-- 🔐 CHANGE PASSWORD -->
-<div id="passScreen" class="screen hidden">
-  <div class="card">
-    <h2>Change Password</h2>
-    <input id="newPass" placeholder="New password">
-    <button onclick="changePassword()">Save</button>
-    <button onclick="backToSettings()">⬅ Back</button>
-  </div>
-</div>
-
-<script src="script.js"></script>
-
-</body>
-</html>
+/* FLOAT BUTTON */
+.fab {
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:var(--primary);
+  color:white;
+  font-size:20px;
+}
