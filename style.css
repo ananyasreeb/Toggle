@@ -1,36 +1,63 @@
 :root {
   --primary: #134E5E;
-  --secondary: #71B280;
-  --bg: #f5f7f6;
-  --text: #111;
+  --accent: #71B280;
+
+  /* LIGHT MODE */
+  --bg: #eaf3f1;        /* soft emerald tint */
   --card: #ffffff;
+  --text: #0f2a30;
+  --border: #d0e3df;
 }
 
+/* 🌙 DARK MODE */
 body.dark {
-  --bg: #0f1f24;
-  --text: #ffffff;
-  --card: #162f36;
+  --bg: #0b2c33;        /* deep emerald */
+  --card: #123f47;
+  --text: #e6f4f2;
+  --border: #1f5c66;
 }
 
+/* BODY */
 body {
+  margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
+  transition: all 0.3s ease;
 }
 
+/* MAIN BOX */
 .phone, .lock {
   background: var(--card);
-  padding: 20px;
+  border: 1px solid var(--border);
+  padding: 22px;
   width: 280px;
   border-radius: 18px;
   text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
+/* HEADINGS */
+h2 {
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+/* INPUT */
+input {
+  width: 92%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  outline: none;
+}
+
+/* BUTTONS */
 button {
   width: 100%;
   padding: 12px;
@@ -38,11 +65,47 @@ button {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s ease;
 }
 
-.block { background: red; color:white; }
-.allow { background: var(--secondary); color:white; }
-.bt { background: var(--primary); color:white; }
+button:hover {
+  transform: scale(1.02);
+}
 
-.green { color: var(--secondary); }
-.red { color: red; }
+/* BUTTON TYPES */
+.block {
+  background: #e74c3c;
+  color: white;
+}
+
+.allow {
+  background: var(--accent);
+  color: white;
+}
+
+.bt {
+  background: var(--primary);
+  color: white;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+/* STATUS COLORS */
+.green {
+  color: var(--accent);
+}
+
+.red {
+  color: #e74c3c;
+}
+
+/* LIST */
+ul {
+  text-align: left;
+  padding-left: 20px;
+}
