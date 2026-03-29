@@ -2,105 +2,83 @@
   --primary: #134E5E;
   --accent: #71B280;
 
-  --bg: #eaf3f1;
+  --bg: #eef6f5;
   --card: #ffffff;
-  --text: #0f2a30;
+  --text: #123033;
 }
 
 body.dark {
-  --bg: #0b2c33;
-  --card: #123f47;
-  --text: #e6f4f2;
+  --bg: #0a2a2f;
+  --card: #113c42;
+  --text: #e7f5f3;
 }
 
 body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
 
-/* SCREEN */
-.screen {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
+.screen { width:100%; display:flex; justify-content:center; }
+.hidden { display:none; }
 
-.hidden {
-  display: none;
-}
-
-/* LOGIN FIXED */
-.login-card {
-  display: flex;
-  flex-direction: column; /* 🔥 IMPORTANT FIX */
-  align-items: center;
-  background: var(--card);
-  padding: 30px;
-  width: 300px;
-  border-radius: 20px;
-}
-
-.sub {
-  font-size: 14px;
-  opacity: 0.7;
-}
-
-.login-card input {
-  width: 100%;
-  padding: 15px;
-  font-size: 16px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-.login-btn {
-  width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #134E5E, #71B280);
-  color: white;
-}
-
-/* CARD */
 .card {
-  background: var(--card);
-  padding: 20px;
-  width: 300px;
-  border-radius: 20px;
+  background:var(--card);
+  padding:20px;
+  width:300px;
+  border-radius:20px;
 }
 
-/* TOPBAR */
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.login-card {
+  display:flex;
+  flex-direction:column;
+  width:300px;
 }
 
-/* BUTTONS */
+input {
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+}
+
 button {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+  padding:12px;
+  margin:8px 0;
+  border:none;
+  border-radius:10px;
 }
 
-.topbar button {
-  width: auto;
+.block { background:#e74c3c; color:white; }
+.allow { background:var(--accent); color:white; }
+.bt { background:var(--primary); color:white; }
+
+/* SETTINGS OPTIONS */
+.option {
+  padding:15px;
+  border-bottom:1px solid #ccc;
+  cursor:pointer;
 }
 
-.block { background: #e74c3c; color:white; }
-.allow { background: var(--accent); color:white; }
-.bt { background: var(--primary); color:white; }
+.option:hover {
+  background:rgba(0,0,0,0.05);
+}
 
-ul {
-  text-align: left;
+.danger { color:red; }
+
+/* FLOAT BUTTON */
+.fab {
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:var(--primary);
+  color:white;
+  font-size:20px;
 }
