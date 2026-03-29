@@ -66,3 +66,10 @@ function connectBluetooth() {
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
+function resetPassword() {
+  const newPass = prompt("Enter new password:");
+  if (newPass) {
+    localStorage.setItem("appPassword", newPass);
+    alert("Password changed!");
+  }
+}
