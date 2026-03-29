@@ -124,3 +124,8 @@ body {
   color: red;
   font-size: 14px;
 }
+.login-card {
+  display: flex;
+  flex-direction: column; /* 👈 THIS FIXES EVERYTHING */
+  align-items: center;
+}
