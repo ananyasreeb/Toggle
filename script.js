@@ -1,8 +1,10 @@
 let devices = JSON.parse(localStorage.getItem("devices")) || [];
 let PASSWORD = localStorage.getItem("appPassword") || "1234";
 
-const deviceCount = document.getElementById("deviceCount");
+let devices = JSON.parse(localStorage.getItem("devices")) || [];
+let PASSWORD = localStorage.getItem("appPassword") || "1234";
 
+let deviceCount; // ❗ don't assign yet
 const lockScreen = document.getElementById("lockScreen");
 const app = document.getElementById("app");
 const bluetoothScreen = document.getElementById("bluetoothScreen");
