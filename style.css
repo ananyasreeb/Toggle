@@ -8,55 +8,33 @@ body {
   height: 100vh;
 }
 
-.phone {
+.phone, .lock {
   border: 2px solid white;
   padding: 20px;
   width: 260px;
   text-align: center;
   border-radius: 15px;
   background: #1a1a1a;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
-h3 {
-  margin-bottom: 10px;
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
 }
 
 button {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-  font-size: 16px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.1s, opacity 0.2s;
 }
 
-button:active {
-  transform: scale(0.95);
-  opacity: 0.8;
-}
+.block { background: red; }
+.allow { background: green; }
+.bt { background: blue; color:white; }
 
-.block {
-  background: red;
-  color: white;
-}
-
-.allow {
-  background: green;
-  color: white;
-}
-
-.status {
-  margin: 15px 0;
-  font-size: 18px;
-}
-
-.green {
-  color: lime;
-}
-
-.red {
-  color: red;
-}
+.green { color: lime; }
+.red { color: red; }
