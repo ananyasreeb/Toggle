@@ -1,144 +1,97 @@
+let password = localStorage.getItem("pass") || "1234";
 let devices = JSON.parse(localStorage.getItem("devices")) || [];
-let PASSWORD = localStorage.getItem("appPassword") || "1234";
 
-const lockScreen = document.getElementById("lockScreen");
+// SCREENS
+const lock = document.getElementById("lock");
 const app = document.getElementById("app");
-const bluetoothScreen = document.getElementById("bluetoothScreen");
+const settings = document.getElementById("settings");
 
-const unlockBtn = document.getElementById("unlockBtn");
-const forgot = document.getElementById("forgot");
+// LOGIN
+function unlock() {
+  const input = document.getElementById("pass").value;
 
-const blockBtn = document.getElementById("blockBtn");
-const allowBtn = document.getElementById("allowBtn");
-const btBtn = document.getElementById("btBtn");
-const scanBtn = document.getElementById("scanBtn");
-const backBtn = document.getElementById("backBtn");
-const themeBtn = document.getElementById("themeBtn");
-
-const camera = document.getElementById("camera");
-const mic = document.getElementById("mic");
-const mode = document.getElementById("mode");
-const deviceCount = document.getElementById("deviceCount");
-
-const clickSound = new Audio("https://www.soundjay.com/buttons/button-3.mp3");
-
-// 🔒 UNLOCK
-unlockBtn.onclick = () => {
-  const input = document.getElementById("passwordInput").value;
-
-  if (input === PASSWORD) {
-    lockScreen.style.display = "none";
-    app.style.display = "block";
-    updateDeviceCount();
+  if (input === password) {
+    lock.classList.add("hidden");
+    app.classList.remove("hidden");
+    update();
   } else {
-    document.getElementById("error").textContent = "Wrong password!";
+    document.getElementById("err").innerText = "Wrong password";
   }
-};
-
-// 🔁 RESET PASSWORD
-forgot.onclick = () => {
-  const otp = Math.floor(1000 + Math.random() * 9000);
-  alert("Your OTP: " + otp);
-
-  const userOtp = prompt("Enter OTP:");
-
-  if (userOtp == otp) {
-    const newPass = prompt("New password:");
-    localStorage.setItem("appPassword", newPass);
-    PASSWORD = newPass;
-    alert("Password changed!");
-  } else {
-    alert("Wrong OTP");
-  }
-};
-
-// 🔴 BLOCK
-blockBtn.onclick = () => {
-  clickSound.play();
-
-  camera.textContent = "BLOCKED";
-  mic.textContent = "BLOCKED";
-  camera.className = "red";
-  mic.className = "red";
-  mode.textContent = "🔴 BLOCK MODE";
-};
-
-// 🟢 ALLOW
-allowBtn.onclick = () => {
-  clickSound.play();
-
-  camera.textContent = "ALLOWED";
-  mic.textContent = "ALLOWED";
-  camera.className = "green";
-  mic.className = "green";
-  mode.textContent = "🟢 ALLOW MODE";
-};
-
-// 📶 OPEN BLUETOOTH
-btBtn.onclick = () => {
-  app.style.display = "none";
-  bluetoothScreen.style.display = "block";
-  updateDeviceList();
-};
-
-// 🔍 SCAN DEVICE
-scanBtn.onclick = () => {
-  document.getElementById("btStatus").textContent = "Searching...";
-
-  setTimeout(() => {
-    const newDevice = "Device_" + Math.floor(Math.random() * 1000);
-
-    devices.push(newDevice);
-    localStorage.setItem("devices", JSON.stringify(devices));
-
-    document.getElementById("btStatus").textContent =
-      "Connected to " + newDevice + " ✅";
-
-    updateDeviceCount();
-    updateDeviceList();
-  }, 2000);
-};
-
-// ⬅ BACK
-backBtn.onclick = () => {
-  bluetoothScreen.style.display = "none";
-  app.style.display = "block";
-};
-
-// 📱 DEVICE COUNT
-function updateDeviceCount() {
-  deviceCount.textContent = "📱 Connected Devices: " + devices.length;
 }
 
-// 📃 DEVICE LIST
-function updateDeviceList() {
-  const list = document.getElementById("deviceList");
+// LOGOUT
+function logout() {
+  app.classList.add("hidden");
+  settings.classList.add("hidden");
+  lock.classList.remove("hidden");
+}
+
+// TOGGLE
+function block() {
+  document.getElementById("cam").innerText = "BLOCKED";
+  document.getElementById("mic").innerText = "BLOCKED";
+  document.getElementById("mode").innerText = "🔴 BLOCK MODE";
+}
+
+function allow() {
+  document.getElementById("cam").innerText = "ALLOWED";
+  document.getElementById("mic").innerText = "ALLOWED";
+  document.getElementById("mode").innerText = "🟢 ALLOW MODE";
+}
+
+// DEVICES
+function scan() {
+  let name = "Device_" + Math.floor(Math.random()*1000);
+  devices.push(name);
+  saveDevices();
+  update();
+}
+
+function removeDevice(index) {
+  devices.splice(index, 1);
+  saveDevices();
+  update();
+}
+
+function saveDevices() {
+  localStorage.setItem("devices", JSON.stringify(devices));
+}
+
+function update() {
+  document.getElementById("count").innerText = "📱 Devices: " + devices.length;
+
+  let list = document.getElementById("deviceList");
   list.innerHTML = "";
 
-  devices.forEach(d => {
-    const li = document.createElement("li");
-    li.textContent = d;
+  devices.forEach((d, i) => {
+    let li = document.createElement("li");
+    li.innerHTML = d + ` <button onclick="removeDevice(${i})">❌</button>`;
     list.appendChild(li);
   });
 }
 
-// 🌙 THEME
-themeBtn.onclick = () => {
-  document.body.classList.toggle("dark");
-
-  if (document.body.classList.contains("dark")) {
-    localStorage.setItem("theme", "dark");
-  } else {
-    localStorage.setItem("theme", "light");
-  }
-};
-
-// LOAD THEME
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
+// SETTINGS
+function openSettings() {
+  app.classList.add("hidden");
+  settings.classList.remove("hidden");
 }
 
-// PWA
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
+function back() {
+  settings.classList.add("hidden");
+  app.classList.remove("hidden");
+}
+
+// THEME
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+}
+
+// PASSWORD CHANGE
+function changePassword() {
+  const newPass = document.getElementById("newPass").value;
+  if (newPass) {
+    password = newPass;
+    localStorage.setItem("pass", newPass);
+    alert("Password changed!");
+  }
 }
