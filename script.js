@@ -1,4 +1,4 @@
-const PASSWORD = "1234"; // change this
+let PASSWORD = localStorage.getItem("appPassword") || "1234";
 
 const lockScreen = document.getElementById("lockScreen");
 const app = document.getElementById("app");
