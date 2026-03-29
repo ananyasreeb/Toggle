@@ -3,37 +3,24 @@
 <head>
   <title>Toggle App</title>
   <link rel="stylesheet" href="style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
 
 <!-- 🔒 LOGIN -->
 <div id="lock" class="screen">
   <div class="login-card">
-
-    <h1>🔐</h1>
-    <h2>Welcome Back</h2>
-    <p class="sub">Enter your password</p>
-
+    <h2>Login</h2>
     <input id="pass" type="password" placeholder="Enter password">
-
-    <button onclick="unlock()" class="login-btn">Unlock</button>
-
+    <button onclick="unlock()">Unlock</button>
     <p id="err"></p>
-
   </div>
 </div>
 
-<!-- 📱 MAIN APP -->
+<!-- 📱 MAIN -->
 <div id="app" class="screen hidden">
   <div class="card">
 
-    <!-- ⚙ TOP BAR -->
-    <div class="topbar">
-      <h2>Toggle App</h2>
-      <button onclick="openSettings()">⚙</button>
-    </div>
+    <h2>Toggle App</h2>
 
     <p id="count">📱 Devices: 0</p>
 
@@ -45,33 +32,46 @@
     <p>Mic: <span id="mic">BLOCKED</span></p>
 
     <button onclick="allow()" class="allow">ALLOW</button>
-
     <button onclick="scan()" class="bt">Scan Device</button>
 
   </div>
+
+  <!-- ⚙️ FLOAT BUTTON -->
+  <button class="fab" onclick="openSettings()">⚙</button>
 </div>
 
-<!-- ⚙ SETTINGS -->
+<!-- ⚙ SETTINGS MENU -->
 <div id="settings" class="screen hidden">
   <div class="card">
 
     <h2>Settings</h2>
 
-    <p><b>Profile:</b> User</p>
+    <div class="option" onclick="openDevices()">📱 Devices</div>
+    <div class="option" onclick="toggleTheme()">🎨 Theme</div>
+    <div class="option" onclick="showChangePass()">🔐 Change Password</div>
+    <div class="option danger" onclick="logout()">🚪 Logout</div>
 
-    <h3>Devices</h3>
-    <ul id="deviceList"></ul>
-
-    <h3>Theme</h3>
-    <button onclick="toggleTheme()">Toggle Dark/Light</button>
-
-    <h3>Change Password</h3>
-    <input id="newPass" placeholder="New password">
-    <button onclick="changePassword()">Save</button>
-
-    <button onclick="logout()" class="block">Logout</button>
     <button onclick="back()">⬅ Back</button>
 
+  </div>
+</div>
+
+<!-- 📱 DEVICES SCREEN -->
+<div id="devicesScreen" class="screen hidden">
+  <div class="card">
+    <h2>Devices</h2>
+    <ul id="deviceList"></ul>
+    <button onclick="backToSettings()">⬅ Back</button>
+  </div>
+</div>
+
+<!-- 🔐 CHANGE PASSWORD -->
+<div id="passScreen" class="screen hidden">
+  <div class="card">
+    <h2>Change Password</h2>
+    <input id="newPass" placeholder="New password">
+    <button onclick="changePassword()">Save</button>
+    <button onclick="backToSettings()">⬅ Back</button>
   </div>
 </div>
 
