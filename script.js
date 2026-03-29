@@ -136,3 +136,9 @@ if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
 }
 }
+function checkPassword() {
+  alert("Button clicked"); // 👈 test
+
+  const input = document.getElementById("passwordInput").value;
+  ...
+}
