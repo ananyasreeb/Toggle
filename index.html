@@ -3,22 +3,44 @@
 <head>
   <title>Toggle App</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
-<div class="phone">
-  <h2>Toggle App</h2>
+<!-- LOCK SCREEN -->
+<div id="lockScreen" class="lock">
+  <h2>Enter Password</h2>
+  <input type="password" id="passwordInput" placeholder="Enter password">
+  <button onclick="checkPassword()">Unlock</button>
+  <p id="error"></p>
+</div>
 
-  <h3 id="mode">🔴 BLOCK MODE</h3>
+<!-- MAIN APP -->
+<div id="app" style="display:none;">
+  <div class="phone">
+    <h2>Toggle App</h2>
 
-  <button id="blockBtn" class="block">🔴 BLOCK</button>
+    <h3 id="mode">🔴 BLOCK MODE</h3>
 
-  <div class="status">
-    <p>Camera: <span id="camera">BLOCKED</span></p>
-    <p>Mic: <span id="mic">BLOCKED</span></p>
+    <button id="blockBtn" class="block">🔴 BLOCK</button>
+
+    <div class="status">
+      <p>Camera: <span id="camera">BLOCKED</span></p>
+      <p>Mic: <span id="mic">BLOCKED</span></p>
+    </div>
+
+    <button id="allowBtn" class="allow">🟢 ALLOW</button>
+
+    <button onclick="openBluetooth()" class="bt">📶 Bluetooth</button>
   </div>
+</div>
 
-  <button id="allowBtn" class="allow">🟢 ALLOW</button>
+<!-- BLUETOOTH SCREEN -->
+<div id="bluetoothScreen" style="display:none;" class="phone">
+  <h2>Bluetooth Devices</h2>
+  <p id="btStatus">Not connected</p>
+  <button onclick="connectBluetooth()">🔍 Scan Devices</button>
+  <button onclick="goBack()">⬅ Back</button>
 </div>
 
 <script src="script.js"></script>
