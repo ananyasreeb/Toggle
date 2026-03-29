@@ -27,7 +27,7 @@ function forgotPassword() {
   if (newPass) {
     password = newPass;
     localStorage.setItem("pass", newPass);
-    alert("Password reset successful");
+    alert("Password reset!");
   }
 }
 
@@ -59,12 +59,14 @@ function removeDevice(i) {
 }
 
 function update() {
-  document.getElementById("count").innerText = "📱 Devices: " + devices.length;
+  document.getElementById("count").innerText =
+    "📱 Devices: " + devices.length;
 
   let list = document.getElementById("deviceList");
   if (!list) return;
 
   list.innerHTML = "";
+
   devices.forEach((d,i)=>{
     let li = document.createElement("li");
     li.innerHTML = d + ` <button onclick="removeDevice(${i})">❌</button>`;
