@@ -71,3 +71,6 @@ button {
 ul {
   text-align: left;
 }
+body {
+  overflow-y: auto; /* 👈 ADD THIS */
+}
