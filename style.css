@@ -1,13 +1,11 @@
 :root {
   --primary: #134E5E;
   --secondary: #71B280;
-
   --bg: #f5f7f6;
   --text: #111;
   --card: #ffffff;
 }
 
-/* DARK MODE VARIABLES */
 body.dark {
   --bg: #0f1f24;
   --text: #ffffff;
@@ -17,40 +15,22 @@ body.dark {
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  transition: background 0.3s, color 0.3s;
 }
 
-/* APP BOX */
 .phone, .lock {
   background: var(--card);
   padding: 20px;
   width: 280px;
   border-radius: 18px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* TEXT */
-h2 {
-  color: var(--primary);
-}
-
-/* INPUT */
-input {
-  width: 90%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-/* BUTTONS */
 button {
   width: 100%;
   padding: 12px;
@@ -58,43 +38,11 @@ button {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.2s;
 }
 
-button:hover {
-  opacity: 0.9;
-}
+.block { background: red; color:white; }
+.allow { background: var(--secondary); color:white; }
+.bt { background: var(--primary); color:white; }
 
-/* BUTTON COLORS */
-.block {
-  background: #ff4d4d;
-  color: white;
-}
-
-.allow {
-  background: var(--secondary);
-  color: white;
-}
-
-.bt {
-  background: var(--primary);
-  color: white;
-}
-
-/* TEXT COLORS */
 .green { color: var(--secondary); }
-.red { color: #ff4d4d; }
-
-/* LIST */
-ul {
-  text-align: left;
-  padding-left: 20px;
-}
-
-/* THEME BUTTON */
-.theme-toggle {
-  background: transparent;
-  border: 2px solid var(--primary);
-  color: var(--primary);
-}
+.red { color: red; }
