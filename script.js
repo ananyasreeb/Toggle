@@ -99,3 +99,13 @@ function updateDeviceCount() {
   deviceCount.textContent = "📱 Connected Devices: " + devices.length;
 }
 updateDeviceCount();
+function updateDeviceList() {
+  const list = document.getElementById("deviceList");
+  list.innerHTML = "";
+
+  devices.forEach(d => {
+    const li = document.createElement("li");
+    li.textContent = d;
+    list.appendChild(li);
+  });
+}
